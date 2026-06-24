@@ -1,2 +1,2 @@
 # Locked-in
-Starting Today I will be regular
+Starting Today I will be regular and code everyday.
