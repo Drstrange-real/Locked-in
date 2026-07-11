@@ -1,28 +1,38 @@
 #include<iostream>
 using namespace std;
+
 void floydTriangle(int n);
+void hollowDiamond(int n);
 void invertedTriangle(int n);
 void pyramid(int n);
 void reverseTriangle(int n);
 void square(int n);
 void triangle(int n);
-int main(){
-  cout << "**********************************" << endl;
-  cout << "   Welcome to pattern generator" << endl;
-  cout << "**********************************" << endl;
-  cout << "  Choose any pattern to print:-" << endl;
-  cout << "1. floydTriangle" << endl;
-  cout << "2. invertedTriangle"<< endl;
-  cout << "3. pyramid" << endl;
-  cout << "4. reverseTriangle"  << endl;
-  cout << "5. square" << endl;
-  cout << "6. triangle" << endl;
-  cout << ":- ";
-  int choice;
-  cin >> choice;
-  int n;
-  cout<< "Enter number of lines to print: ";
-  cin >> n;
+
+#define MENU_ITEM(num, funcName) \
+    cout << num << ". " << #funcName << endl;
+
+int main() {
+    cout << "**********************************" << endl;
+    cout << "   Welcome to pattern generator" << endl;
+    cout << "**********************************" << endl;
+    cout << "  Choose any pattern to print:-" << endl;
+    MENU_ITEM(1, floydTriangle);
+    MENU_ITEM(2, invertedTriangle);
+    MENU_ITEM(3, pyramid);
+    MENU_ITEM(4, reverseTriangle);
+    MENU_ITEM(5, square);
+    MENU_ITEM(6, triangle);
+    MENU_ITEM(7, hollowDiamond);
+
+    cout << ":- ";
+    
+    int choice;
+    cin >> choice;
+    
+    int n;
+    cout << "Enter number of lines to print: ";
+    cin >> n;
   switch(choice){
     case 1:
       floydTriangle(n);
@@ -42,14 +52,49 @@ int main(){
     case 6:
       triangle(n);
       break;
+      case 7:
+      hollowDiamond(n);
+      break;
   }
 }
 void floydTriangle(int n){
   int num = 1;
   for(int i = 0; i < n; i++){
-    for(int j = 0; j < i; j++){
+    for(int j = 0; j <= i; j++){
       cout << num << " ";
       num++;
+    }
+    cout << endl;
+  }
+}
+void hollowDiamond(int n){
+  int num = n - 2;
+  //top
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n - i; j++){
+      cout << " ";
+    }
+    cout << "*";
+    if(i != 0){
+      for(int j = 0; j < 2 * i - 1;j++){
+        cout << " ";
+      }
+      cout << "*";
+    }
+    cout << endl;
+  }
+  //bottom
+  for(int i = 0; i < n-1; i++){
+    for(int j = 0; j < i + 2; j++){
+      cout << " ";
+    }
+    cout << "*";
+    if( i != n - 2){
+      for(int j = 2 * num - 1; j > 0; j--){
+        cout << " ";
+      }
+      cout << "*";
+      num --;
     }
     cout << endl;
   }
